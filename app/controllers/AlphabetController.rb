@@ -6,5 +6,26 @@ class AlphabetController < UIViewController
 
     @table = UITableView.alloc.initWithFrame self.view.bounds
     self.view.addSubview @table
+
+    @table.dataSource = self
+    @data = ("A".."Z").to_a
+  end
+
+  #
+  # UITableViewDataSource
+  #
+  def tableView(tableView, cellForRowAtIndexPath: indexPath)
+    @reuseIdentifier ||= "CELL_IDENTIFIER"
+
+    cell = tableView.dequeueReusableCellWithIdentifier(@reuseIdentifier) || begin
+      UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: @reuseIdentifier)
+    end
+
+    cell.textLabel.text = @data[indexPath.row]
+    cell
+  end
+
+  def tableView(tableView, numberOfRowsInSection: section)
+    @data.count
   end
 end
