@@ -9,6 +9,8 @@ class AlphabetController < UIViewController
 
     @table.dataSource = self
     @data = ("A".."Z").to_a
+
+    @table.delegate = self
   end
 
   #
@@ -27,5 +29,17 @@ class AlphabetController < UIViewController
 
   def tableView(tableView, numberOfRowsInSection: section)
     @data.count
+  end
+
+  #
+  # UITableViewDelegate
+  #
+  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    alert = UIAlertView.alloc.init
+    alert.message = "#{@data[indexPath.row]} tapped!"
+    alert.addButtonWithTitle "OK"
+    alert.show
   end
 end
