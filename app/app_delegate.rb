@@ -1,10 +1,7 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    alert = UIAlertView.new
-    alert.message = "Hello Motion!"
-    alert.show
-
-    puts "Hello again!"
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.makeKeyAndVisible
 
     true
   end
