@@ -22,6 +22,8 @@ class AppDelegate
 
     UIView.animateWithDuration(
       2, 
+      delay: 0,
+      options: UIViewAnimationOptionCurveLinear,
       animations: lambda {
         @view.frame = [@points[@current_index], [100, 100]]
       }, 
